@@ -33,7 +33,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER) //Обозначает загрузку вместе с остальными полями
+    @ManyToMany(fetch = FetchType.LAZY) //Обозначает "ленивую" загрузку
     private Set<Role> roles;
 
     @Override

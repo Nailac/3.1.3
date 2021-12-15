@@ -3,9 +3,12 @@ package com.example.springboot.controller;
 import com.example.springboot.model.Role;
 import com.example.springboot.model.User;
 import com.example.springboot.service.RoleService;
+import com.example.springboot.service.RoleServiceImpl;
 import com.example.springboot.service.UserService;
+import com.example.springboot.service.UserServiceImpl;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +32,7 @@ public class UserController {
         this.userService = userService;
         this.roleService = roleService;
     }
-
+    
     @GetMapping("/admin")
     public String index(Model model){
         model.addAttribute("listUser", userService.findAll());
