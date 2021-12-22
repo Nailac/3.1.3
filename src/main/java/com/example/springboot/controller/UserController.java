@@ -32,12 +32,20 @@ public class UserController {
         this.userService = userService;
         this.roleService = roleService;
     }
-    
+
+    @GetMapping("/login")
+    public String login(){
+        return "/login";
+    }
+
     @GetMapping("/admin")
-    public String index(Model model){
+    public String index(@AuthenticationPrincipal User user, Model model){
+        model.addAttribute("user", user);
+        model.addAttribute("listRoles", roleService.findAll());
         model.addAttribute("listUser", userService.findAll());
         return "/pageAdmin";
     }
+
 
     @GetMapping("/user")
     public String infoUser(@AuthenticationPrincipal User user, Model model){
@@ -86,7 +94,7 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/user/delete/{id}")
+    @PostMapping("/user/delete/{id}")
     public String delete(@PathVariable("id") long id){
         User user = userService.getById(id);
         userService.delete(user);

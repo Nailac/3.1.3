@@ -3,6 +3,7 @@ package com.example.springboot.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -21,14 +22,18 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", unique = true)
-    private String name;
+    @Column(name = "firstname")
+    private String firstName;
 
     @Column(name = "surname")
     private String surname;
 
+    @Column(name = "email", unique = true)
+    private String email;
+
     @Column(name = "age")
     private int age;
+
 
     @Column(name = "password")
     private String password;
@@ -41,6 +46,7 @@ public class User implements UserDetails {
         return getRoles();
     }
 
+
     @Override
     public String getPassword() {
         return password;
@@ -48,7 +54,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return firstName;
     }
 
     @Override

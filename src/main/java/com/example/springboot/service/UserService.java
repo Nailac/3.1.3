@@ -7,7 +7,7 @@ import com.example.springboot.model.User;
 public interface UserService {
     List<User> findAll();
     User getById(long id);
-    User findUserByName(String name);
+    User findUserByEmail(String email);
     void save(User user);
     void update(User user);
     void delete(User user);
