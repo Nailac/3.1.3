@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public User getById(long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id).orElseThrow();
     }
 
     public void save(User user) {
